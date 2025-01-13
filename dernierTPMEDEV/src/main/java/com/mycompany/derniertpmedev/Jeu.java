@@ -16,15 +16,19 @@ import java.util.ArrayList;
  */
 public class Jeu {
     
+    public Plateau plateauDeJeu = new Plateau();
+
     /** Le plateau de jeu sur lequel se déroule la partie */
     public Plateau plateauDeJeu;
     
     /** Liste contenant les deux joueurs participant à la partie */
+
     public ArrayList<Joueur> listeJoueurs;
     
     /** Indicateur de tour : true si c'est au noir de jouer, false pour le blanc */
     public Boolean auNoirDeJouer = true;
     
+
     /**
      * Constructeur par défaut.
      * Initialise un nouveau plateau de jeu et une liste vide de joueurs.
@@ -33,6 +37,7 @@ public class Jeu {
         this.plateauDeJeu = new Plateau();
         this.listeJoueurs = new ArrayList<Joueur>();
     }
+
     
     /**
      * Initialise une nouvelle partie.
@@ -61,10 +66,15 @@ public class Jeu {
         int[] coupNoir = this.listeJoueurs.get(0).jouer();
         while (!(coupJouableNoir.contains(coupNoir))){
             System.out.println("Ce coup n'est pas jouable, merci d'en fournir un autre :");
-            coupNoir = this.listeJoueurs.get(0).jouer();
+            coupNoir = this.listeJoueurs.get(0).jouer();    
         }
         
+        plateauDeJeu.changerpionNoir(coupNoir);
+        
+        
+
         // puis au joueur blanc 
+
     }
     
     /**
@@ -81,6 +91,7 @@ public class Jeu {
         else{
             return(this.plateauDeJeu.positionsJouablesNoir().isEmpty());
         }
+        
     }
     
     /**
@@ -97,6 +108,7 @@ public class Jeu {
      * La partie se termine dès qu'un des joueurs n'a plus de coups possibles.
      */
     public void partie(){
+        this.initialisation();
         while (!(this.detectionFinPartie(1)) && !(this.detectionFinPartie(2))){
             this.jouerTour();
         }

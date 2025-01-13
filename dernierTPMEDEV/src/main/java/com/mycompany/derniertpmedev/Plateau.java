@@ -10,7 +10,10 @@ import java.util.List;
 public class Plateau {
 
     private int[][] cases = new int[8][8]; // Plateau de jeu (0 : case vide, 1 : blanc, 2 : noir)
-
+    
+    public void Plateau(){
+        this.initialiser();
+    }
     /**
      * Initialise le plateau avec les positions de départ des pions (les 4 pions centraux).
      */
@@ -210,4 +213,41 @@ public class Plateau {
         }
         return true; // Toutes les cases sont remplies
     }
+    
+    // Méthode pour changer les pions en fonction des coordonnées du pion noir
+    public void changerpionNoir(int[] coupNoir) {
+        // Le pion noir (représenté par la valeur 2) est placé aux coordonnées (x, y)
+        cases[coupNoir[0]][coupNoir[1]] = 2;  // Place le pion noir (2)
+
+        // Maintenant, on change tous les pions blancs autour du pion noir
+        // (En fonction des règles du jeu, par exemple en retournant les pions blancs)
+        // Ici, on appelle une méthode pour vérifier et changer les pions blancs
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i == 0 && j == 0) continue; // Ignore la case du pion noir
+                int newX = coupNoir[0] + i;
+                int newY = coupNoir[1] + j;
+
+                // Vérifier si la position est valide et contient un pion blanc (1)
+                if (newX >= 0 && newX < cases.length && newY >= 0 && newY < cases[0].length) {
+                    if (cases[newX][newY] == 1) {
+                        // Changer le pion blanc (1) en noir (2)
+                        cases[newX][newY] = 2;
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void setCases(int[][] cases) {
+        this.cases = cases;
+    }
+
+    public void setDirections(int[][] directions) {
+        this.directions = directions;
+    }
+
+
 }
