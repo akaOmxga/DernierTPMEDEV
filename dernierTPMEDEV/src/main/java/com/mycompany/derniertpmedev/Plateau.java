@@ -5,23 +5,38 @@
 package com.mycompany.derniertpmedev;
 
 /**
- *
+ * Représente un plateau de jeu de type 8x8 pour le jeu reverso.
+ * Le plateau est composé de cases qui peuvent être blanches, noires ou vides.
+ * 
  * @author barbo et simon
  */
 public class Plateau {
     
+    // Matrice représentant les cases du plateau, où chaque case est un entier.
+    // 0 : case vide, 1 : case blanche, 2 : case noire
     private int[][] cases = new int[8][8]; 
     
+    /**
+     * Initialise le plateau avec les positions de départ pour un jeu (par exemple, Reversi).
+     * Les cases blanches et noires sont placées au centre du plateau.
+     */
     public void initialiser(){
-        // initialisation des cases blanches
-        this.cases[4][4] = 1;
-        this.cases[5][5] = 1;
+        // Initialisation des cases blanches
+        this.cases[4][4] = 1;  // La case (4,4) devient blanche
+        this.cases[5][5] = 1;  // La case (5,5) devient blanche
         
-        // initialisation des cases noires
-        this.cases[4][5] = 1;
-        this.cases[5][4] = 1;
+        // Initialisation des cases noires
+        this.cases[4][5] = 2;  // La case (4,5) devient noire
+        this.cases[5][4] = 2;  // La case (5,4) devient noire
     }
     
+    /**
+     * Affiche l'état actuel du plateau sur la console.
+     * Les cases sont affichées sous forme de symboles :
+     * - 'B' pour une case blanche,
+     * - 'N' pour une case noire,
+     * - '_' pour une case vide.
+     */
     public void afficher() {
         for (int i = 0; i < 8; i++) { // Parcours des lignes
             for (int j = 0; j < 8; j++) { // Parcours des colonnes
@@ -37,6 +52,12 @@ public class Plateau {
         }
     }
     
+    /**
+     * Vérifie si le plateau est plein.
+     * Un plateau est considéré plein si aucune case n'est vide.
+     * 
+     * @return true si toutes les cases sont remplies, false sinon
+     */
     public boolean estPlein() {
         for (int i = 0; i < 8; i++) { // Parcours des lignes
             for (int j = 0; j < 8; j++) { // Parcours des colonnes
