@@ -209,26 +209,37 @@ public class Plateau {
     // Méthode pour changer les pions en fonction des coordonnées du pion noir
     public void changerpionNoir(int[] coupNoir) {
         // Le pion noir (représenté par la valeur 2) est placé aux coordonnées (x, y)
-            this.get(coupNoir.get(0)).set(coupNoir.get(1), 2);  // Place le pion noir (2)
+        cases[coupNoir[0]][coupNoir[1]] = 2;  // Place le pion noir (2)
 
-            // Maintenant, on change tous les pions blancs autour du pion noir
-            // (En fonction des règles du jeu, par exemple en retournant les pions blancs)
-            // Ici, on appelle une méthode pour vérifier et changer les pions blancs
+        // Maintenant, on change tous les pions blancs autour du pion noir
+        // (En fonction des règles du jeu, par exemple en retournant les pions blancs)
+        // Ici, on appelle une méthode pour vérifier et changer les pions blancs
 
-            for (int i = -1; i <= 1; i++) {
-                for (int j = -1; j <= 1; j++) {
-                    if (i == 0 && j == 0) continue; // Ignore la case du pion noir
-                    int newX = x + i;
-                    int newY = y + j;
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i == 0 && j == 0) continue; // Ignore la case du pion noir
+                int newX = coupNoir[0] + i;
+                int newY = coupNoir[1] + j;
 
-                    // Vérifier si la position est valide et contient un pion blanc (1)
-                    if (newX >= 0 && newX < plateau.size() && newY >= 0 && newY < plateau.get(0).size()) {
-                        if (plateau.get(newX).get(newY) == 1) {
-                            // Changer le pion blanc (1) en noir (2)
-                            plateau.get(newX).set(newY, 2);
-                        }
+                // Vérifier si la position est valide et contient un pion blanc (1)
+                if (newX >= 0 && newX < cases.length && newY >= 0 && newY < cases[0].length) {
+                    if (cases[newX][newY] == 1) {
+                        // Changer le pion blanc (1) en noir (2)
+                        cases[newX][newY] = 2;
                     }
                 }
             }
         }
+    }
+
+
+    public void setCases(int[][] cases) {
+        this.cases = cases;
+    }
+
+    public void setDirections(int[][] directions) {
+        this.directions = directions;
+    }
+
+
 }

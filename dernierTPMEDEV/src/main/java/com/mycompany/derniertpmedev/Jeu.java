@@ -37,7 +37,14 @@ public class Jeu {
             coupNoir = this.listeJoueurs.get(0).jouer();    
         }
         
-        Plateau.changerpionNoir(coupNoir);
+        plateauDeJeu.changerpionNoir(coupNoir);
+        
+        
+        
+        
+        
+        
+        
         
     }
     
