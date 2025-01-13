@@ -12,14 +12,16 @@ import java.util.ArrayList;
  */
 public class Jeu {
     
-    public Plateau plateauDeJeu;
+    public Plateau plateauDeJeu = new Plateau();
     public ArrayList<Joueur> listeJoueurs;
     public Boolean auNoirDeJouer = true;
     
+
     Jeu(){
         this.plateauDeJeu = new Plateau();
         this.listeJoueurs = new ArrayList<Joueur>();
     }
+
     
     public void initialisation(){
         // initialisation des Joueurs :
@@ -38,11 +40,18 @@ public class Jeu {
         int[] coupNoir = this.listeJoueurs.get(0).jouer();
         while (!(coupJouableNoir.contains(coupNoir))){
             System.out.println("Ce coup n'est pas jouable, merci d'en fournir un autre :");
-            coupNoir = this.listeJoueurs.get(0).jouer();
+            coupNoir = this.listeJoueurs.get(0).jouer();    
         }
         
-                
-        // puis au joueur blanc 
+        plateauDeJeu.changerpionNoir(coupNoir);
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     public boolean detectionFinPartie(int couleur){
@@ -52,6 +61,7 @@ public class Jeu {
         else{
             return(this.plateauDeJeu.positionsJouablesNoir().isEmpty());
         }
+        
     }
     
     public void finPartie(){
@@ -59,6 +69,7 @@ public class Jeu {
     }
     
     public void partie(){
+        this.initialisation();
         while (!(this.detectionFinPartie(1)) && !(this.detectionFinPartie(2))){
             this.jouerTour();
         }
