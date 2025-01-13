@@ -15,11 +15,8 @@ import java.util.ArrayList;
  * @author barbo et simon
  */
 public class Jeu {
-    
-    public Plateau plateauDeJeu = new Plateau();
-
     /** Le plateau de jeu sur lequel se déroule la partie */
-    public Plateau plateauDeJeu;
+    public Plateau plateauDeJeu = new Plateau();
     
     /** Liste contenant les deux joueurs participant à la partie */
 
@@ -62,19 +59,26 @@ public class Jeu {
      */
     public void jouerTour(){
         // au joueur noir de commencer
+        System.out.println("C'est au Joueur Noir de jouer !");
+        this.plateauDeJeu.afficher();
         ArrayList<ArrayList<Integer>> coupJouableNoir = new ArrayList<>();
         int[] coupNoir = this.listeJoueurs.get(0).jouer();
         while (!(coupJouableNoir.contains(coupNoir))){
             System.out.println("Ce coup n'est pas jouable, merci d'en fournir un autre :");
             coupNoir = this.listeJoueurs.get(0).jouer();    
         }
-        
         plateauDeJeu.changerpionNoir(coupNoir);
-        
-        
 
         // puis au joueur blanc 
-
+        System.out.println("C'est au Joueur Blanc de jouer !");
+        this.plateauDeJeu.afficher();
+        ArrayList<ArrayList<Integer>> coupJouableBlanc = new ArrayList<>();
+        int[] coupBlanc = this.listeJoueurs.get(1).jouer();
+        while (!(coupJouableBlanc.contains(coupNoir))){
+            System.out.println("Ce coup n'est pas jouable, merci d'en fournir un autre :");
+            coupBlanc = this.listeJoueurs.get(1).jouer();    
+        }
+        plateauDeJeu.changerpionNoir(coupBlanc);
     }
     
     /**
@@ -104,7 +108,6 @@ public class Jeu {
     
     /**
      * Gère le déroulement complet d'une partie.
-     * La partie continue tant que les deux joueurs ont des coups possibles.
      * La partie se termine dès qu'un des joueurs n'a plus de coups possibles.
      */
     public void partie(){
