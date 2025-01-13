@@ -27,20 +27,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Jar Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.mycompany.derniertpmedev.DernierTPMEDEV</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
             <!-- Javadoc Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

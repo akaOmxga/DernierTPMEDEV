@@ -7,11 +7,6 @@ package com.mycompany.derniertpmedev;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * barbo; Simon 
- * Classe représentant le plateau de jeu de Reversi (ou Othello).
- * Le plateau est une grille 8x8 où les joueurs peuvent placer des jetons noirs (2) et blancs (1).
- */
 public class Plateau {
 
     private int[][] cases = new int[8][8]; // Plateau de jeu (0 : case vide, 1 : blanc, 2 : noir)
@@ -174,6 +169,7 @@ public class Plateau {
 
     /**
      * Affiche le plateau de jeu dans la console.
+
      */
     public void afficher() {
         for (int i = 0; i < 8; i++) { // Parcours des lignes
@@ -194,6 +190,7 @@ public class Plateau {
      * Vérifie si le plateau est plein (aucune case vide).
      * 
      * @return true si le plateau est plein, false sinon.
+
      */
     public boolean estPlein() {
         for (int i = 0; i < 8; i++) { // Parcours des lignes
