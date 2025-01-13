@@ -4,10 +4,60 @@
  */
 package com.mycompany.derniertpmedev;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author victo
  */
 public class Jeu {
     
+    public Plateau plateauDeJeu;
+    public ArrayList<Joueur> listeJoueurs;
+    public Boolean auNoirDeJouer = true;
+    
+    public void initialisation(){
+        // initialisation des Joueurs :
+        Joueur joueurBlanc = new Joueur(1);
+        Joueur joueurNoir = new Joueur(2);
+        listeJoueurs.add(joueurBlanc);
+        listeJoueurs.add(joueurNoir);
+        
+        // initialisation du Plateau :
+        this.plateauDeJeu = new Plateau();
+    }
+    
+    public void jouerTour(){
+        // au joueur noir de commencer
+        ArrayList<ArrayList<Integer>> coupJouableNoir = new ArrayList<>();
+        int[] coupNoir = this.listeJoueurs.get(0).jouer();
+        while (!(coupJouableNoir.contains(coupNoir))){
+            System.out.println("Ce coup n'est pas jouable, merci d'en fournir un autre :");
+            coupNoir = this.listeJoueurs.get(0).jouer();
+        }
+        
+                
+        // puis au joueur blanc 
+    }
+    
+    public boolean detectionFinPartie(int couleur){
+        if (couleur == 1){
+            return(this.plateauDeJeu.jouableBlanc().isEmpty());
+        }
+        else{
+            return(this.plateauDeJeu.jouableNoir().isEmpty());
+        }
+    }
+    
+    public void finPartie(){
+        System.out.println("fin de la partie !");
+    }
+    
+    public void partie(){
+        while (!(this.detectionFinPartie(1)) && !(this.detectionFinPartie(2))){
+            this.jouerTour();
+        }
+        finPartie();
+    }
+  
 }
