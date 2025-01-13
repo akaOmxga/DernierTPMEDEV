@@ -12,7 +12,6 @@ public class DernierTPMEDEV {
 
     public static void main(String[] args) {
         Jeu Jeuu = new Jeu();
-        Jeuu.initialisation();
-        
+        Jeuu.partie();
     }   
 }
