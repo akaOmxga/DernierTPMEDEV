@@ -67,7 +67,7 @@ public class PlateauTest {
         instance.initialiser();
         boolean expResult = false;
         boolean result = instance.estPlein();
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, "estPlein error versionNonPleine");
         
         // plateau plein 
         Plateau instancePleine = new Plateau();
@@ -79,7 +79,7 @@ public class PlateauTest {
         }
         boolean expResultPlein = true;
         boolean resultPlein = instancePleine.estPlein();
-        assertEquals(expResultPlein, resultPlein);
+        assertEquals(expResultPlein, resultPlein,"estPlein error versionPleine");
 
     }
     

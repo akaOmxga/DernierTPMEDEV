@@ -46,6 +46,6 @@ public class JoueurTest {
         Joueur instance = new Joueur(1); // Joueur Blanc 
         int expResult = 1;
         int result = instance.getCouleur();
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, "testGetCouleur error");
     }
 }

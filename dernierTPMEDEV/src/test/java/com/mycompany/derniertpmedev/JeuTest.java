@@ -53,6 +53,6 @@ public class JeuTest {
         expected[4][5] = 2;
         expected[5][4] = 2;
         // 
-        assertEquals(expected,instance.plateauDeJeu.getCases());
+        assertEquals(expected,instance.plateauDeJeu.getCases(),"testInitialisation error");
     }
 }
