@@ -71,11 +71,10 @@ public class PlateauTest {
         
         // plateau plein 
         Plateau instancePleine = new Plateau();
-        int[][] cases = instancePleine.getCases();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 // remplir la case
-                cases[i][j] = 1;
+                instancePleine.setCases(i,j,1);
             }
         }
         boolean expResultPlein = true;
