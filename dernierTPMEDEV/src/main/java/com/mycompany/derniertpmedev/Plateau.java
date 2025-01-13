@@ -4,38 +4,172 @@
  */
 package com.mycompany.derniertpmedev;
 
-/**
- * Représente un plateau de jeu de type 8x8 pour le jeu reverso.
- * Le plateau est composé de cases qui peuvent être blanches, noires ou vides.
- * 
- * @author barbo et simon
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class Plateau {
-    
-    // Matrice représentant les cases du plateau, où chaque case est un entier.
-    // 0 : case vide, 1 : case blanche, 2 : case noire
-    private int[][] cases = new int[8][8]; 
-    
+
+    private int[][] cases = new int[8][8]; // Plateau de jeu (0 : case vide, 1 : blanc, 2 : noir)
+
     /**
-     * Initialise le plateau avec les positions de départ pour un jeu (par exemple, Reversi).
-     * Les cases blanches et noires sont placées au centre du plateau.
+     * Initialise le plateau avec les positions de départ des pions (les 4 pions centraux).
      */
     public void initialiser(){
         // Initialisation des cases blanches
-        this.cases[4][4] = 1;  // La case (4,4) devient blanche
-        this.cases[5][5] = 1;  // La case (5,5) devient blanche
+        this.cases[4][4] = 1;
+        this.cases[5][5] = 1;
         
         // Initialisation des cases noires
-        this.cases[4][5] = 2;  // La case (4,5) devient noire
-        this.cases[5][4] = 2;  // La case (5,4) devient noire
+        this.cases[4][5] = 2;
+        this.cases[5][4] = 2;
     }
     
+    // Directions possibles pour vérifier les captures : haut, bas, gauche, droite, diagonales
+    private int[][] directions = {
+        {-1, 0}, // haut
+        {1, 0},  // bas
+        {0, -1}, // gauche
+        {0, 1},  // droite
+        {-1, -1}, // diagonale haut-gauche
+        {-1, 1},  // diagonale haut-droit
+        {1, -1},  // diagonale bas-gauche
+        {1, 1}    // diagonale bas-droit
+    };
+
     /**
-     * Affiche l'état actuel du plateau sur la console.
-     * Les cases sont affichées sous forme de symboles :
-     * - 'B' pour une case blanche,
-     * - 'N' pour une case noire,
-     * - '_' pour une case vide.
+     * Trouve toutes les positions jouables pour le joueur noir.
+     * 
+     * @return Liste des positions jouables sous forme de paires [i, j] représentant les indices des cases.
+     */
+    public List<int[]> positionsJouablesNoir() {
+        List<int[]> positionsJouables = new ArrayList<>();
+        
+        // Parcours de toutes les cases du plateau
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                // Si la case est vide
+                if (cases[i][j] == 0) {
+                    // Vérifie si la case est jouable pour le noir
+                    if (estJouableNoir(i, j)) {
+                        positionsJouables.add(new int[]{i, j});
+                    }
+                }
+            }
+        }
+
+        return positionsJouables;
+    }
+
+    /**
+     * Vérifie si une position est jouable pour le joueur noir.
+     * 
+     * @param i La ligne de la case à vérifier.
+     * @param j La colonne de la case à vérifier.
+     * @return true si la position est jouable pour le joueur noir, false sinon.
+     */
+    private boolean estJouableNoir(int i, int j) {
+        // Vérifie chaque direction
+        for (int[] direction : directions) {
+            int x = i + direction[0];
+            int y = j + direction[1];
+            boolean captureTrouvee = false;
+
+            // On doit d'abord rencontrer un pion blanc
+            if (estDansPlateau(x, y) && cases[x][y] == 1) {
+                // Ensuite, on cherche une case noire après une ou plusieurs cases blanches
+                while (estDansPlateau(x, y) && cases[x][y] == 1) {
+                    x += direction[0];
+                    y += direction[1];
+                }
+
+                // Si on trouve une case noire après des cases blanches, c'est jouable
+                if (estDansPlateau(x, y) && cases[x][y] == 2) {
+                    captureTrouvee = true;
+                }
+            }
+
+            if (captureTrouvee) {
+                return true; // Si une capture est possible dans cette direction, la case est jouable
+            }
+        }
+
+        return false; // Si aucune direction ne permet une capture, la case n'est pas jouable
+    }
+
+    /**
+     * Vérifie si une position est dans les limites du plateau.
+     * 
+     * @param x La ligne de la position.
+     * @param y La colonne de la position.
+     * @return true si la position est dans les limites du plateau, false sinon.
+     */
+    private boolean estDansPlateau(int x, int y) {
+        return x >= 0 && x < 8 && y >= 0 && y < 8;
+    }
+
+    /**
+     * Trouve toutes les positions jouables pour le joueur blanc.
+     * 
+     * @return Liste des positions jouables sous forme de paires [i, j] représentant les indices des cases.
+     */
+    public List<int[]> positionsJouablesBlanc() {
+        List<int[]> positionsJouables = new ArrayList<>();
+        
+        // Parcours de toutes les cases du plateau
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                // Si la case est vide
+                if (cases[i][j] == 0) {
+                    // Vérifie si la case est jouable pour le blanc
+                    if (estJouableBlanc(i, j)) {
+                        positionsJouables.add(new int[]{i, j});
+                    }
+                }
+            }
+        }
+
+        return positionsJouables;
+    }
+
+    /**
+     * Vérifie si une position est jouable pour le joueur blanc.
+     * 
+     * @param i La ligne de la case à vérifier.
+     * @param j La colonne de la case à vérifier.
+     * @return true si la position est jouable pour le joueur blanc, false sinon.
+     */
+    private boolean estJouableBlanc(int i, int j) {
+        // Vérifie chaque direction pour le joueur blanc
+        for (int[] direction : directions) {
+            int x = i + direction[0];
+            int y = j + direction[1];
+            boolean captureTrouvee = false;
+
+            // On doit d'abord rencontrer un pion noir
+            if (estDansPlateau(x, y) && cases[x][y] == 2) {
+                // Ensuite, on cherche une case blanche après une ou plusieurs cases noires
+                while (estDansPlateau(x, y) && cases[x][y] == 2) {
+                    x += direction[0];
+                    y += direction[1];
+                }
+
+                // Si on trouve une case blanche après des cases noires, c'est jouable
+                if (estDansPlateau(x, y) && cases[x][y] == 1) {
+                    captureTrouvee = true;
+                }
+            }
+
+            if (captureTrouvee) {
+                return true; // Si une capture est possible dans cette direction, la case est jouable
+            }
+        }
+
+        return false; // Si aucune direction ne permet une capture, la case n'est pas jouable
+    }
+
+    /**
+     * Affiche le plateau de jeu dans la console.
+
      */
     public void afficher() {
         for (int i = 0; i < 8; i++) { // Parcours des lignes
@@ -51,12 +185,12 @@ public class Plateau {
             System.out.println(); // Retour à la ligne après chaque ligne
         }
     }
-    
+
     /**
-     * Vérifie si le plateau est plein.
-     * Un plateau est considéré plein si aucune case n'est vide.
+     * Vérifie si le plateau est plein (aucune case vide).
      * 
-     * @return true si toutes les cases sont remplies, false sinon
+     * @return true si le plateau est plein, false sinon.
+
      */
     public boolean estPlein() {
         for (int i = 0; i < 8; i++) { // Parcours des lignes
