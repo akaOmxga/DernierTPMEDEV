@@ -6,8 +6,17 @@ package com.mycompany.derniertpmedev;
 
 /**
  *
- * @author victo
+ * @author barbo et simon
  */
 public class Joueur {
     
+    private int couleur;
+    
+    Joueur(int couleur){
+        this.couleur = couleur;
+    }
+    
+    public int getCouleur(){
+        return this.couleur;
+    }
 }
