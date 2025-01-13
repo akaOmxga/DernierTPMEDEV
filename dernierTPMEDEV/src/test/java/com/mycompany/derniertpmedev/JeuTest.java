@@ -4,6 +4,7 @@
  */
 package com.mycompany.derniertpmedev;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +54,6 @@ public class JeuTest {
         expected[4][5] = 2;
         expected[5][4] = 2;
         // 
-        assertEquals(expected,instance.plateauDeJeu.getCases(),"testInitialisation error");
+        assertTrue(Arrays.deepEquals(expected, instance.plateauDeJeu.getCases()),"testInitialisation error");
     }
 }

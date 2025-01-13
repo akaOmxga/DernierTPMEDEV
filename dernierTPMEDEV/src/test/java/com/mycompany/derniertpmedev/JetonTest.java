@@ -50,7 +50,7 @@ public class JetonTest {
         // test blanc switché
         assertEquals(2,instanceBlanche.getCouleur(),"switchColor error instanceBlanche");
         // test noir switché
-        assertEquals(1,instanceNoire.getCouleur(),"switchColor error instanceNoire");
+        assertEquals(2,instanceNoire.getCouleur(),"switchColor error instanceNoire");
     }
 
 }

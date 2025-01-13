@@ -4,6 +4,7 @@
  */
 package com.mycompany.derniertpmedev;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,7 +54,7 @@ public class PlateauTest {
         // expected cases noires
         expected[4][5] = 2;
         expected[5][4] = 2;
-        assertEquals(expected,instance.getCases());
+        assertTrue(Arrays.deepEquals(expected,instance.getCases()));
     }
 
     /**
