@@ -44,20 +44,16 @@ public class PlateauTest {
         System.out.println("initialiser");
         Plateau instance = new Plateau();
         instance.initialiser();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of afficher method, of class Plateau.
-     */
-    @Test
-    public void testAfficher() {
-        System.out.println("afficher");
-        Plateau instance = new Plateau();
-        instance.afficher();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int[][] expected = new int[8][8];
+        // expected cases blanches
+        expected[4][4] = 1;
+        expected[5][5] = 1;
+        
+        // expected cases noires
+        expected[4][5] = 2;
+        expected[5][4] = 2;
+        assertEquals(expected,instance.getCases());
     }
 
     /**
@@ -66,12 +62,26 @@ public class PlateauTest {
     @Test
     public void testEstPlein() {
         System.out.println("estPlein");
+        // plateau non plein 
         Plateau instance = new Plateau();
+        instance.initialiser();
         boolean expResult = false;
         boolean result = instance.estPlein();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // plateau plein 
+        Plateau instancePleine = new Plateau();
+        int[][] cases = instancePleine.getCases();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                // remplir la case
+                cases[i][j] = 1;
+            }
+        }
+        boolean expResultPlein = true;
+        boolean resultPlein = instancePleine.estPlein();
+        assertEquals(expResultPlein, resultPlein);
+
     }
     
 }
