@@ -11,7 +11,8 @@ package com.mycompany.derniertpmedev;
 public class DernierTPMEDEV {
 
     public static void main(String[] args) {
-        System.out.println("Hellooo World!");
-        // test 
-    }
+        Jeu Jeuu = new Jeu();
+        Jeuu.initialisation();
+        
+    }   
 }

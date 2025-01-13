@@ -10,7 +10,10 @@ import java.util.List;
 public class Plateau {
 
     private int[][] cases = new int[8][8]; // Plateau de jeu (0 : case vide, 1 : blanc, 2 : noir)
-
+    
+    public void Plateau(){
+        this.initialiser();
+    }
     /**
      * Initialise le plateau avec les positions de départ des pions (les 4 pions centraux).
      */

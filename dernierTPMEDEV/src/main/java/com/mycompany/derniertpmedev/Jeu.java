@@ -16,6 +16,7 @@ public class Jeu {
     public ArrayList<Joueur> listeJoueurs;
     public Boolean auNoirDeJouer = true;
     
+    
     public void initialisation(){
         // initialisation des Joueurs :
         Joueur joueurBlanc = new Joueur(1);
