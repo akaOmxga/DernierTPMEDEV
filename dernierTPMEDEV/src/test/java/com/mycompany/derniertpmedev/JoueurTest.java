@@ -64,9 +64,4 @@ public class JoueurTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    new int[]{ligne, colonne}
-    Joueur(int couleur){
-        this.couleur = couleur;
-        this.scanner = new Scanner(System.in);
-    }
 }

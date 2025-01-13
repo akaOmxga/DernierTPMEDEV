@@ -42,10 +42,10 @@ public class Jeu {
     
     public boolean detectionFinPartie(int couleur){
         if (couleur == 1){
-            return(this.plateauDeJeu.jouableBlanc().isEmpty());
+            return(this.plateauDeJeu.positionsJouablesBlanc().isEmpty());
         }
         else{
-            return(this.plateauDeJeu.jouableNoir().isEmpty());
+            return(this.plateauDeJeu.positionsJouablesNoir().isEmpty());
         }
     }
     
