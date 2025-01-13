@@ -27,6 +27,14 @@ public class Plateau {
         this.cases[5][4] = 2;
     }
     
+    public int[][] getCases(){
+        return this.cases;
+    }
+    
+    public void setCases(int x, int y, int c){
+        this.cases[x][y]=c;
+    }
+    
     // Directions possibles pour vérifier les captures : haut, bas, gauche, droite, diagonales
     private int[][] directions = {
         {-1, 0}, // haut

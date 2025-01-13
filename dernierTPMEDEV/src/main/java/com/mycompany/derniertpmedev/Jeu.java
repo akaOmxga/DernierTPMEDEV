@@ -16,6 +16,12 @@ public class Jeu {
     public ArrayList<Joueur> listeJoueurs;
     public Boolean auNoirDeJouer = true;
     
+
+    Jeu(){
+        this.plateauDeJeu = new Plateau();
+        this.listeJoueurs = new ArrayList<Joueur>();
+    }
+
     
     public void initialisation(){
         // initialisation des Joueurs :
@@ -25,7 +31,7 @@ public class Jeu {
         listeJoueurs.add(joueurNoir);
         
         // initialisation du Plateau :
-        this.plateauDeJeu = new Plateau();
+        this.plateauDeJeu.initialiser();
     }
     
     public void jouerTour(){

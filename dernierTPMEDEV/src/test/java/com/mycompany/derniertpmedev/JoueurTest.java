@@ -44,24 +44,8 @@ public class JoueurTest {
     public void testGetCouleur() {
         System.out.println("getCouleur");
         Joueur instance = new Joueur(1); // Joueur Blanc 
-        int expResult = 0;
+        int expResult = 1;
         int result = instance.getCouleur();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of jouer method, of class Joueur.
-     */
-    @Test
-    public void testJouer() {
-        System.out.println("jouer");
-        Joueur instance = null;
-        int[] expResult = null;
-        int[] result = instance.jouer();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, "testGetCouleur error");
     }
 }

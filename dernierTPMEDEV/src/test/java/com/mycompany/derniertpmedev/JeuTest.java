@@ -4,6 +4,7 @@
  */
 package com.mycompany.derniertpmedev;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,59 +45,15 @@ public class JeuTest {
         System.out.println("initialisation");
         Jeu instance = new Jeu();
         instance.initialisation();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int[][] expected = new int[8][8];
+        // expected cases blanches
+        expected[4][4] = 1;
+        expected[5][5] = 1;
+        
+        // expected cases noires
+        expected[4][5] = 2;
+        expected[5][4] = 2;
+        // 
+        assertTrue(Arrays.deepEquals(expected, instance.plateauDeJeu.getCases()),"testInitialisation error");
     }
-
-    /**
-     * Test of jouerTour method, of class Jeu.
-     */
-    @Test
-    public void testJouerTour() {
-        System.out.println("jouerTour");
-        Jeu instance = new Jeu();
-        instance.jouerTour();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of detectionFinPartie method, of class Jeu.
-     */
-    @Test
-    public void testDetectionFinPartie() {
-        System.out.println("detectionFinPartie");
-        int couleur = 0;
-        Jeu instance = new Jeu();
-        boolean expResult = false;
-        boolean result = instance.detectionFinPartie(couleur);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of finPartie method, of class Jeu.
-     */
-    @Test
-    public void testFinPartie() {
-        System.out.println("finPartie");
-        Jeu instance = new Jeu();
-        instance.finPartie();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of partie method, of class Jeu.
-     */
-    @Test
-    public void testPartie() {
-        System.out.println("partie");
-        Jeu instance = new Jeu();
-        instance.partie();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
